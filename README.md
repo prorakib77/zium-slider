@@ -8,7 +8,13 @@ A lightweight, dependency-free vanilla JavaScript slider/carousel that works sea
 
 **Repository**: [https://github.com/prorakib77/zium-slider](https://github.com/prorakib77/zium-slider)  
 **npm Package**: [https://www.npmjs.com/package/zium-slider](https://www.npmjs.com/package/zium-slider)  
-**CDN**: [jsDelivr](https://cdn.jsdelivr.net/npm/zium-slider@latest/dist/simple-slider.min.js)
+**CDN**: [jsDelivr](https://cdn.jsdelivr.net/npm/zium-slider@latest/dist/simple-slider.min.js)  
+**Live Demo**: [GitHub Pages](https://prorakib77.github.io/zium-slider/)
+
+### 🎮 Try the Demos
+
+- **[Theme Showcase Demo](https://prorakib77.github.io/zium-slider/demo.html)** - See all 6 beautiful themes
+- **[All Slider Types Demo](https://prorakib77.github.io/zium-slider/demo-all-sliders.html)** - Product, Hero, Fashion, E-commerce & more
 
 ## Features
 
