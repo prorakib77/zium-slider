@@ -1,0 +1,24 @@
+# Source files
+src/
+node_modules/
+*.log
+.DS_Store
+.env
+.vscode/
+.idea/
+
+# Build files (keep dist/)
+rollup.config.js
+build.js
+
+# Demo files
+demo.html
+demo-all-sliders.html
+
+# Git files
+.git/
+.gitignore
+
+# Documentation (keep README.md)
+# README.md is included by default
+

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zium Slider - All Slider Types Demo</title>
+  <link rel="stylesheet" href="dist/simple-slider.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+      color: white;
+    }
+
+    .header h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+    }
+
+    .section {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 2px;
+    }
+
+    .code-example {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      border-radius: 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-top: 20px;
+    }
+
+    /* Product Card Styles */
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 8px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+    }
+
+    .product-title {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .product-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    /* Hero Slide Styles */
+    .hero-slide {
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .hero-slide h2 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-slide p {
+      font-size: 1.5rem;
+      opacity: 0.95;
+    }
+
+    /* Fashion Card Styles */
+    .fashion-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .fashion-image {
+      width: 100%;
+      height: 350px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 4rem;
+    }
+
+    .fashion-content {
+      padding: 20px;
+    }
+
+    .fashion-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    /* E-commerce Card Styles */
+    .ecommerce-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .ecommerce-image {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5rem;
+    }
+
+    .ecommerce-content {
+      padding: 15px;
+    }
+
+    .ecommerce-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .ecommerce-price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    .footer {
+      text-align: center;
+      color: white;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2.5rem;
+      }
+      .section {
+        padding: 20px;
+      }
+      .hero-slide h2 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎠 Zium Slider</h1>
+      <p>Complete Slider Collection - Product, Hero, Fashion, E-commerce & More</p>
+    </div>
+
+    <!-- Product Card Slider -->
+    <div class="section">
+      <h2 class="section-title">Product Card Slider</h2>
+      <div id="productSlider" class="zium-slider">
+        <div class="product-card">
+          <div class="product-image">📱</div>
+          <div class="product-title">Smartphone Pro</div>
+          <div class="product-price">$599</div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">💻</div>
+          <div class="product-title">Laptop Ultra</div>
+          <div class="product-price">$1299</div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">🎧</div>
+          <div class="product-title">Wireless Headphones</div>
+          <div class="product-price">$199</div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">⌚</div>
+          <div class="product-title">Smart Watch</div>
+          <div class="product-price">$349</div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">📷</div>
+          <div class="product-title">Camera DSLR</div>
+          <div class="product-price">$899</div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">🎮</div>
+          <div class="product-title">Gaming Console</div>
+          <div class="product-price">$499</div>
+        </div>
+      </div>
+      <div class="code-example">
+new SimpleSlider('#productSlider', { preset: 'product' });
+// Or customize:
+new SimpleSlider('#productSlider', {
+  type: 'product',
+  slidesPerView: 4,
+  spaceBetween: 20,
+  breakpoints: {
+    768: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 },
+    1200: { slidesPerView: 4 }
+  }
+});
+      </div>
+    </div>
+
+    <!-- Hero Slider -->
+    <div class="section">
+      <h2 class="section-title">Hero Slider</h2>
+      <div id="heroSlider" class="zium-slider">
+        <div class="hero-slide" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+          <h2>Welcome to Our Store</h2>
+          <p>Discover amazing products and deals</p>
+        </div>
+        <div class="hero-slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+          <h2>New Collection</h2>
+          <p>Shop the latest fashion trends</p>
+        </div>
+        <div class="hero-slide" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+          <h2>Special Offers</h2>
+          <p>Up to 50% off on selected items</p>
+        </div>
+      </div>
+      <div class="code-example">
+new SimpleSlider('#heroSlider', { preset: 'hero' });
+// Or customize:
+new SimpleSlider('#heroSlider', {
+  type: 'hero',
+  autoplay: true,
+  autoplayInterval: 5000,
+  transitionSpeed: 600
+});
+      </div>
+    </div>
+
+    <!-- Fashion Slider -->
+    <div class="section">
+      <h2 class="section-title">Fashion Slider</h2>
+      <div id="fashionSlider" class="zium-slider">
+        <div class="fashion-card">
+          <div class="fashion-image">👗</div>
+          <div class="fashion-content">
+            <div class="fashion-title">Summer Collection</div>
+            <p>Elegant dresses for every occasion</p>
+          </div>
+        </div>
+        <div class="fashion-card">
+          <div class="fashion-image">👔</div>
+          <div class="fashion-content">
+            <div class="fashion-title">Men's Formal</div>
+            <p>Professional attire for business</p>
+          </div>
+        </div>
+        <div class="fashion-card">
+          <div class="fashion-image">👠</div>
+          <div class="fashion-content">
+            <div class="fashion-title">Footwear</div>
+            <p>Comfortable and stylish shoes</p>
+          </div>
+        </div>
+        <div class="fashion-card">
+          <div class="fashion-image">👜</div>
+          <div class="fashion-content">
+            <div class="fashion-title">Accessories</div>
+            <p>Complete your look with style</p>
+          </div>
+        </div>
+      </div>
+      <div class="code-example">
+new SimpleSlider('#fashionSlider', { preset: 'fashion' });
+// Or customize:
+new SimpleSlider('#fashionSlider', {
+  type: 'fashion',
+  slidesPerView: 3,
+  spaceBetween: 30,
+  breakpoints: {
+    768: { slidesPerView: 1 },
+    1024: { slidesPerView: 2 },
+    1400: { slidesPerView: 3 }
+  }
+});
+      </div>
+    </div>
+
+    <!-- E-commerce Slider -->
+    <div class="section">
+      <h2 class="section-title">E-commerce Slider</h2>
+      <div id="ecommerceSlider" class="zium-slider">
+        <div class="ecommerce-card">
+          <div class="ecommerce-image">🛍️</div>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Product Item 1</div>
+            <div class="ecommerce-price">$29.99</div>
+          </div>
+        </div>
+        <div class="ecommerce-card">
+          <div class="ecommerce-image">🛒</div>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Product Item 2</div>
+            <div class="ecommerce-price">$39.99</div>
+          </div>
+        </div>
+        <div class="ecommerce-card">
+          <div class="ecommerce-image">📦</div>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Product Item 3</div>
+            <div class="ecommerce-price">$49.99</div>
+          </div>
+        </div>
+        <div class="ecommerce-card">
+          <div class="ecommerce-image">🎁</div>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Product Item 4</div>
+            <div class="ecommerce-price">$19.99</div>
+          </div>
+        </div>
+        <div class="ecommerce-card">
+          <div class="ecommerce-image">💎</div>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Product Item 5</div>
+            <div class="ecommerce-price">$79.99</div>
+          </div>
+        </div>
+        <div class="ecommerce-card">
+          <div class="ecommerce-image">⭐</div>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Product Item 6</div>
+            <div class="ecommerce-price">$59.99</div>
+          </div>
+        </div>
+        <div class="ecommerce-card">
+          <div class="ecommerce-image">🔥</div>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Product Item 7</div>
+            <div class="ecommerce-price">$69.99</div>
+          </div>
+        </div>
+      </div>
+      <div class="code-example">
+new SimpleSlider('#ecommerceSlider', { preset: 'ecommerce' });
+// Or customize:
+new SimpleSlider('#ecommerceSlider', {
+  type: 'ecommerce',
+  slidesPerView: 5,
+  spaceBetween: 15,
+  breakpoints: {
+    576: { slidesPerView: 1 },
+    768: { slidesPerView: 2 },
+    992: { slidesPerView: 3 },
+    1200: { slidesPerView: 4 },
+    1400: { slidesPerView: 5 }
+  }
+});
+      </div>
+    </div>
+
+    <!-- Swiper-style Slider -->
+    <div class="section">
+      <h2 class="section-title">Swiper-style Slider</h2>
+      <div id="swiperSlider" class="zium-slider">
+        <div class="slide slide-1" style="height: 300px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">
+          Slide 1
+        </div>
+        <div class="slide slide-2" style="height: 300px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">
+          Slide 2
+        </div>
+        <div class="slide slide-3" style="height: 300px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">
+          Slide 3
+        </div>
+        <div class="slide slide-4" style="height: 300px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">
+          Slide 4
+        </div>
+      </div>
+      <div class="code-example">
+new SimpleSlider('#swiperSlider', { preset: 'swiper' });
+      </div>
+    </div>
+
+    <!-- Slick-style Slider -->
+    <div class="section">
+      <h2 class="section-title">Slick-style Slider</h2>
+      <div id="slickSlider" class="zium-slider">
+        <div class="slide slide-1" style="height: 250px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">
+          Slide 1
+        </div>
+        <div class="slide slide-2" style="height: 250px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">
+          Slide 2
+        </div>
+        <div class="slide slide-3" style="height: 250px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">
+          Slide 3
+        </div>
+      </div>
+      <div class="code-example">
+new SimpleSlider('#slickSlider', { preset: 'slick' });
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Made with ❤️ by <a href="#" style="color: white; text-decoration: none;">Zium Slider</a></p>
+    </div>
+  </div>
+
+  <script src="dist/simple-slider.js"></script>
+  <script>
+    (function() {
+      function initSliders() {
+        try {
+          // Product Slider
+          new SimpleSlider('#productSlider', { preset: 'product' });
+
+          // Hero Slider
+          new SimpleSlider('#heroSlider', { preset: 'hero' });
+
+          // Fashion Slider
+          new SimpleSlider('#fashionSlider', { preset: 'fashion' });
+
+          // E-commerce Slider
+          new SimpleSlider('#ecommerceSlider', { preset: 'ecommerce' });
+
+          // Swiper-style Slider
+          new SimpleSlider('#swiperSlider', { preset: 'swiper' });
+
+          // Slick-style Slider
+          new SimpleSlider('#slickSlider', { preset: 'slick' });
+        } catch (error) {
+          console.error('Error initializing sliders:', error);
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSliders);
+      } else {
+        initSliders();
+      }
+    })();
+  </script>
+</body>
+</html>
+

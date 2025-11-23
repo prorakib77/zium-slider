@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zium Slider - Modern & Classic Themes Demo</title>
+  <link rel="stylesheet" href="dist/simple-slider.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+      color: white;
+    }
+
+    .header h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      letter-spacing: -1px;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    .themes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .theme-card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .theme-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+    }
+
+    .theme-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .theme-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .theme-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-classic {
+      background: #e8f4f8;
+      color: #0066cc;
+    }
+
+    .badge-modern {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .badge-minimal {
+      background: #f5f5f5;
+      color: #666;
+    }
+
+    .badge-elegant {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+    }
+
+    .badge-bold {
+      background: #000;
+      color: #fff;
+    }
+
+    .badge-vintage {
+      background: #8b7355;
+      color: #f5e6d3;
+    }
+
+    .slider-container {
+      margin-bottom: 25px;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 400px;
+    }
+
+    .slide {
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .slide-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .slide-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .slide-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+    .slide-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+    .slide-5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+
+    .code-example {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      border-radius: 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-top: 20px;
+    }
+
+    .code-example .keyword {
+      color: #569cd6;
+    }
+
+    .code-example .string {
+      color: #ce9178;
+    }
+
+    .code-example .property {
+      color: #9cdcfe;
+    }
+
+    .footer {
+      text-align: center;
+      color: white;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.3s;
+    }
+
+    .footer a:hover {
+      opacity: 0.8;
+    }
+
+    /* Product Card Styles */
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 8px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+    }
+
+    .product-title {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .product-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    /* Hero Slide Styles */
+    .hero-slide {
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .hero-slide h2 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-slide p {
+      font-size: 1.5rem;
+      opacity: 0.95;
+    }
+
+    /* Fashion Card Styles */
+    .fashion-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .fashion-image {
+      width: 100%;
+      height: 350px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 4rem;
+    }
+
+    .fashion-content {
+      padding: 20px;
+    }
+
+    .fashion-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    /* E-commerce Card Styles */
+    .ecommerce-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .ecommerce-image {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5rem;
+    }
+
+    .ecommerce-content {
+      padding: 15px;
+    }
+
+    .ecommerce-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .ecommerce-price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    @media (max-width: 768px) {
+      .themes-grid {
+        gap: 30px;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+      }
+
+      .theme-card {
+        padding: 20px;
+      }
+
+      .slider-container {
+        height: 300px;
+      }
+
+      .slide {
+        height: 300px;
+        font-size: 2rem;
+      }
+
+      .hero-slide {
+        height: 400px;
+      }
+
+      .hero-slide h2 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎠 Zium Slider</h1>
+      <p>Modern & Classic Themes Collection</p>
+    </div>
+
+    <div class="themes-grid">
+      <!-- Classic Theme -->
+      <div class="theme-card">
+        <div class="theme-header">
+          <div class="theme-title">
+            Classic
+            <span class="theme-badge badge-classic">Timeless</span>
+          </div>
+        </div>
+        <div id="classicSlider" class="slider-container">
+          <div class="slide slide-1">
+            <div class="slide-content">Slide 1</div>
+          </div>
+          <div class="slide slide-2">
+            <div class="slide-content">Slide 2</div>
+          </div>
+          <div class="slide slide-3">
+            <div class="slide-content">Slide 3</div>
+          </div>
+        </div>
+        <div class="code-example">
+          <span class="keyword">new</span> <span class="property">SimpleSlider</span>(<span class="string">'#classicSlider'</span>, {<br>
+          &nbsp;&nbsp;<span class="property">theme</span>: <span class="string">'classic'</span>,<br>
+          &nbsp;&nbsp;<span class="property">autoplay</span>: <span class="keyword">true</span>,<br>
+          &nbsp;&nbsp;<span class="property">autoplayInterval</span>: <span class="string">3000</span><br>
+          });
+        </div>
+      </div>
+
+      <!-- Modern Theme -->
+      <div class="theme-card">
+        <div class="theme-header">
+          <div class="theme-title">
+            Modern
+            <span class="theme-badge badge-modern">Trendy</span>
+          </div>
+        </div>
+        <div id="modernSlider" class="slider-container">
+          <div class="slide slide-1">
+            <div class="slide-content">Slide 1</div>
+          </div>
+          <div class="slide slide-2">
+            <div class="slide-content">Slide 2</div>
+          </div>
+          <div class="slide slide-3">
+            <div class="slide-content">Slide 3</div>
+          </div>
+          <div class="slide slide-4">
+            <div class="slide-content">Slide 4</div>
+          </div>
+        </div>
+        <div class="code-example">
+          <span class="keyword">new</span> <span class="property">SimpleSlider</span>(<span class="string">'#modernSlider'</span>, {<br>
+          &nbsp;&nbsp;<span class="property">theme</span>: <span class="string">'modern'</span>,<br>
+          &nbsp;&nbsp;<span class="property">autoplay</span>: <span class="keyword">true</span>,<br>
+          &nbsp;&nbsp;<span class="property">autoplayInterval</span>: <span class="string">2500</span><br>
+          });
+        </div>
+      </div>
+
+      <!-- Minimal Theme -->
+      <div class="theme-card">
+        <div class="theme-header">
+          <div class="theme-title">
+            Minimal
+            <span class="theme-badge badge-minimal">Clean</span>
+          </div>
+        </div>
+        <div id="minimalSlider" class="slider-container">
+          <div class="slide slide-2">
+            <div class="slide-content">Slide 1</div>
+          </div>
+          <div class="slide slide-3">
+            <div class="slide-content">Slide 2</div>
+          </div>
+          <div class="slide slide-4">
+            <div class="slide-content">Slide 3</div>
+          </div>
+        </div>
+        <div class="code-example">
+          <span class="keyword">new</span> <span class="property">SimpleSlider</span>(<span class="string">'#minimalSlider'</span>, {<br>
+          &nbsp;&nbsp;<span class="property">theme</span>: <span class="string">'minimal'</span>,<br>
+          &nbsp;&nbsp;<span class="property">autoplay</span>: <span class="keyword">true</span><br>
+          });
+        </div>
+      </div>
+
+      <!-- Elegant Theme -->
+      <div class="theme-card">
+        <div class="theme-header">
+          <div class="theme-title">
+            Elegant
+            <span class="theme-badge badge-elegant">Sophisticated</span>
+          </div>
+        </div>
+        <div id="elegantSlider" class="slider-container">
+          <div class="slide slide-1">
+            <div class="slide-content">Slide 1</div>
+          </div>
+          <div class="slide slide-3">
+            <div class="slide-content">Slide 2</div>
+          </div>
+          <div class="slide slide-5">
+            <div class="slide-content">Slide 3</div>
+          </div>
+          <div class="slide slide-2">
+            <div class="slide-content">Slide 4</div>
+          </div>
+        </div>
+        <div class="code-example">
+          <span class="keyword">new</span> <span class="property">SimpleSlider</span>(<span class="string">'#elegantSlider'</span>, {<br>
+          &nbsp;&nbsp;<span class="property">theme</span>: <span class="string">'elegant'</span>,<br>
+          &nbsp;&nbsp;<span class="property">autoplay</span>: <span class="keyword">true</span>,<br>
+          &nbsp;&nbsp;<span class="property">transitionSpeed</span>: <span class="string">500</span><br>
+          });
+        </div>
+      </div>
+
+      <!-- Bold Theme -->
+      <div class="theme-card">
+        <div class="theme-header">
+          <div class="theme-title">
+            Bold
+            <span class="theme-badge badge-bold">Striking</span>
+          </div>
+        </div>
+        <div id="boldSlider" class="slider-container">
+          <div class="slide slide-1">
+            <div class="slide-content">Slide 1</div>
+          </div>
+          <div class="slide slide-2">
+            <div class="slide-content">Slide 2</div>
+          </div>
+          <div class="slide slide-3">
+            <div class="slide-content">Slide 3</div>
+          </div>
+        </div>
+        <div class="code-example">
+          <span class="keyword">new</span> <span class="property">SimpleSlider</span>(<span class="string">'#boldSlider'</span>, {<br>
+          &nbsp;&nbsp;<span class="property">theme</span>: <span class="string">'bold'</span>,<br>
+          &nbsp;&nbsp;<span class="property">autoplay</span>: <span class="keyword">true</span><br>
+          });
+        </div>
+      </div>
+
+      <!-- Vintage Theme -->
+      <div class="theme-card">
+        <div class="theme-header">
+          <div class="theme-title">
+            Vintage
+            <span class="theme-badge badge-vintage">Retro</span>
+          </div>
+        </div>
+        <div id="vintageSlider" class="slider-container">
+          <div class="slide slide-4">
+            <div class="slide-content">Slide 1</div>
+          </div>
+          <div class="slide slide-5">
+            <div class="slide-content">Slide 2</div>
+          </div>
+          <div class="slide slide-1">
+            <div class="slide-content">Slide 3</div>
+          </div>
+        </div>
+        <div class="code-example">
+          <span class="keyword">new</span> <span class="property">SimpleSlider</span>(<span class="string">'#vintageSlider'</span>, {<br>
+          &nbsp;&nbsp;<span class="property">theme</span>: <span class="string">'vintage'</span>,<br>
+          &nbsp;&nbsp;<span class="property">autoplay</span>: <span class="keyword">true</span><br>
+          });
+        </div>
+      </div>
+
+      <!-- Product Card Slider -->
+      <div class="theme-card">
+        <div class="theme-header">
+          <div class="theme-title">
+            Product Card Slider
+            <span class="theme-badge badge-modern">E-commerce</span>
+          </div>
+        </div>
+        <div id="productSlider" class="slider-container" style="height: auto; padding: 10px 0;">
+          <div class="product-card">
+            <div class="product-image">📱</div>
+            <div class="product-title">Smartphone Pro</div>
+            <div class="product-price">$599</div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">💻</div>
+            <div class="product-title">Laptop Ultra</div>
+            <div class="product-price">$1299</div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">🎧</div>
+            <div class="product-title">Wireless Headphones</div>
+            <div class="product-price">$199</div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">⌚</div>
+            <div class="product-title">Smart Watch</div>
+            <div class="product-price">$349</div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">📷</div>
+            <div class="product-title">Camera DSLR</div>
+            <div class="product-price">$899</div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">🎮</div>
+            <div class="product-title">Gaming Console</div>
+            <div class="product-price">$499</div>
+          </div>
+        </div>
+        <div class="code-example">
+          <span class="keyword">new</span> <span class="property">SimpleSlider</span>(<span class="string">'#productSlider'</span>, { <span class="property">preset</span>: <span class="string">'product'</span> });
+        </div>
+      </div>
+
+      <!-- Hero Slider -->
+      <div class="theme-card">
+        <div class="theme-header">
+          <div class="theme-title">
+            Hero Slider
+            <span class="theme-badge badge-elegant">Banner</span>
+          </div>
+        </div>
+        <div id="heroSlider" class="slider-container" style="height: 600px;">
+          <div class="hero-slide" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <h2>Welcome to Our Store</h2>
+            <p>Discover amazing products and deals</p>
+          </div>
+          <div class="hero-slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <h2>New Collection</h2>
+            <p>Shop the latest fashion trends</p>
+          </div>
+          <div class="hero-slide" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <h2>Special Offers</h2>
+            <p>Up to 50% off on selected items</p>
+          </div>
+        </div>
+        <div class="code-example">
+          <span class="keyword">new</span> <span class="property">SimpleSlider</span>(<span class="string">'#heroSlider'</span>, { <span class="property">preset</span>: <span class="string">'hero'</span> });
+        </div>
+      </div>
+
+      <!-- Fashion Slider -->
+      <div class="theme-card">
+        <div class="theme-header">
+          <div class="theme-title">
+            Fashion Slider
+            <span class="theme-badge badge-elegant">Showcase</span>
+          </div>
+        </div>
+        <div id="fashionSlider" class="slider-container" style="height: auto; padding: 20px 0;">
+          <div class="fashion-card">
+            <div class="fashion-image">👗</div>
+            <div class="fashion-content">
+              <div class="fashion-title">Summer Collection</div>
+              <p>Elegant dresses for every occasion</p>
+            </div>
+          </div>
+          <div class="fashion-card">
+            <div class="fashion-image">👔</div>
+            <div class="fashion-content">
+              <div class="fashion-title">Men's Formal</div>
+              <p>Professional attire for business</p>
+            </div>
+          </div>
+          <div class="fashion-card">
+            <div class="fashion-image">👠</div>
+            <div class="fashion-content">
+              <div class="fashion-title">Footwear</div>
+              <p>Comfortable and stylish shoes</p>
+            </div>
+          </div>
+          <div class="fashion-card">
+            <div class="fashion-image">👜</div>
+            <div class="fashion-content">
+              <div class="fashion-title">Accessories</div>
+              <p>Complete your look with style</p>
+            </div>
+          </div>
+        </div>
+        <div class="code-example">
+          <span class="keyword">new</span> <span class="property">SimpleSlider</span>(<span class="string">'#fashionSlider'</span>, { <span class="property">preset</span>: <span class="string">'fashion'</span> });
+        </div>
+      </div>
+
+      <!-- E-commerce Slider -->
+      <div class="theme-card">
+        <div class="theme-header">
+          <div class="theme-title">
+            E-commerce Slider
+            <span class="theme-badge badge-modern">Products</span>
+          </div>
+        </div>
+        <div id="ecommerceSlider" class="slider-container" style="height: auto; padding: 15px 0;">
+          <div class="ecommerce-card">
+            <div class="ecommerce-image">🛍️</div>
+            <div class="ecommerce-content">
+              <div class="ecommerce-title">Product Item 1</div>
+              <div class="ecommerce-price">$29.99</div>
+            </div>
+          </div>
+          <div class="ecommerce-card">
+            <div class="ecommerce-image">🛒</div>
+            <div class="ecommerce-content">
+              <div class="ecommerce-title">Product Item 2</div>
+              <div class="ecommerce-price">$39.99</div>
+            </div>
+          </div>
+          <div class="ecommerce-card">
+            <div class="ecommerce-image">📦</div>
+            <div class="ecommerce-content">
+              <div class="ecommerce-title">Product Item 3</div>
+              <div class="ecommerce-price">$49.99</div>
+            </div>
+          </div>
+          <div class="ecommerce-card">
+            <div class="ecommerce-image">🎁</div>
+            <div class="ecommerce-content">
+              <div class="ecommerce-title">Product Item 4</div>
+              <div class="ecommerce-price">$19.99</div>
+            </div>
+          </div>
+          <div class="ecommerce-card">
+            <div class="ecommerce-image">💎</div>
+            <div class="ecommerce-content">
+              <div class="ecommerce-title">Product Item 5</div>
+              <div class="ecommerce-price">$79.99</div>
+            </div>
+          </div>
+          <div class="ecommerce-card">
+            <div class="ecommerce-image">⭐</div>
+            <div class="ecommerce-content">
+              <div class="ecommerce-title">Product Item 6</div>
+              <div class="ecommerce-price">$59.99</div>
+            </div>
+          </div>
+          <div class="ecommerce-card">
+            <div class="ecommerce-image">🔥</div>
+            <div class="ecommerce-content">
+              <div class="ecommerce-title">Product Item 7</div>
+              <div class="ecommerce-price">$69.99</div>
+            </div>
+          </div>
+        </div>
+        <div class="code-example">
+          <span class="keyword">new</span> <span class="property">SimpleSlider</span>(<span class="string">'#ecommerceSlider'</span>, { <span class="property">preset</span>: <span class="string">'ecommerce'</span> });
+        </div>
+      </div>
+
+      <!-- Swiper-style Slider -->
+      <div class="theme-card">
+        <div class="theme-header">
+          <div class="theme-title">
+            Swiper-style Slider
+            <span class="theme-badge badge-modern">Multi-Slide</span>
+          </div>
+        </div>
+        <div id="swiperSlider" class="slider-container">
+          <div class="slide slide-1">
+            <div class="slide-content">Slide 1</div>
+          </div>
+          <div class="slide slide-2">
+            <div class="slide-content">Slide 2</div>
+          </div>
+          <div class="slide slide-3">
+            <div class="slide-content">Slide 3</div>
+          </div>
+          <div class="slide slide-4">
+            <div class="slide-content">Slide 4</div>
+          </div>
+        </div>
+        <div class="code-example">
+          <span class="keyword">new</span> <span class="property">SimpleSlider</span>(<span class="string">'#swiperSlider'</span>, { <span class="property">preset</span>: <span class="string">'swiper'</span> });
+        </div>
+      </div>
+
+      <!-- Slick-style Slider -->
+      <div class="theme-card">
+        <div class="theme-header">
+          <div class="theme-title">
+            Slick-style Slider
+            <span class="theme-badge badge-classic">Classic</span>
+          </div>
+        </div>
+        <div id="slickSlider" class="slider-container">
+          <div class="slide slide-1">
+            <div class="slide-content">Slide 1</div>
+          </div>
+          <div class="slide slide-2">
+            <div class="slide-content">Slide 2</div>
+          </div>
+          <div class="slide slide-3">
+            <div class="slide-content">Slide 3</div>
+          </div>
+        </div>
+        <div class="code-example">
+          <span class="keyword">new</span> <span class="property">SimpleSlider</span>(<span class="string">'#slickSlider'</span>, { <span class="property">preset</span>: <span class="string">'slick'</span> });
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Made with ❤️ by <a href="https://github.com/prorakib77/zium-slider.git" target="_blank">Abdullah MT Rakib</a></p>
+      <p style="margin-top: 10px; opacity: 0.8; font-size: 0.9rem;">
+        Available via CDN: <code style="background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px;">jsDelivr</code>
+      </p>
+    </div>
+  </div>
+
+  <script src="dist/simple-slider.js"></script>
+  <script>
+    // Initialize sliders when DOM is ready
+    (function() {
+      function initSliders() {
+        try {
+          // Classic Theme
+          new SimpleSlider('#classicSlider', {
+            theme: 'classic',
+            autoplay: true,
+            autoplayInterval: 3000
+          });
+
+          // Modern Theme
+          new SimpleSlider('#modernSlider', {
+            theme: 'modern',
+            autoplay: true,
+            autoplayInterval: 2500
+          });
+
+          // Minimal Theme
+          new SimpleSlider('#minimalSlider', {
+            theme: 'minimal',
+            autoplay: true,
+            autoplayInterval: 3500
+          });
+
+          // Elegant Theme
+          new SimpleSlider('#elegantSlider', {
+            theme: 'elegant',
+            autoplay: true,
+            autoplayInterval: 4000,
+            transitionSpeed: 500
+          });
+
+          // Bold Theme
+          new SimpleSlider('#boldSlider', {
+            theme: 'bold',
+            autoplay: true,
+            autoplayInterval: 3000
+          });
+
+          // Vintage Theme
+          new SimpleSlider('#vintageSlider', {
+            theme: 'vintage',
+            autoplay: true,
+            autoplayInterval: 3500
+          });
+
+          // Product Card Slider
+          new SimpleSlider('#productSlider', { preset: 'product' });
+
+          // Hero Slider
+          new SimpleSlider('#heroSlider', { preset: 'hero' });
+
+          // Fashion Slider
+          new SimpleSlider('#fashionSlider', { preset: 'fashion' });
+
+          // E-commerce Slider
+          new SimpleSlider('#ecommerceSlider', { preset: 'ecommerce' });
+
+          // Swiper-style Slider
+          new SimpleSlider('#swiperSlider', { preset: 'swiper' });
+
+          // Slick-style Slider
+          new SimpleSlider('#slickSlider', { preset: 'slick' });
+        } catch (error) {
+          console.error('Error initializing sliders:', error);
+        }
+      }
+
+      // If DOM is already loaded, run immediately
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSliders);
+      } else {
+        // DOM is already loaded
+        initSliders();
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "name": "zium-slider",
+  "version": "1.0.0",
+  "description": "A lightweight, dependency-free vanilla JavaScript slider/carousel.",
+  "main": "dist/simple-slider.min.js",
+  "jsdelivr": "dist/simple-slider.min.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "rollup -c && node build.js",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "rollup": "^3.29.4",
+    "@rollup/plugin-terser": "^0.4.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prorakib77/zium-slider.git"
+  },
+  "keywords": [
+    "slider",
+    "carousel",
+    "javascript",
+    "vanilla-js",
+    "web-component",
+    "cdn"
+  ],
+  "author": "Abdullah MT Rakib",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prorakib77/zium-slider/issues"
+  },
+  "homepage": "https://github.com/prorakib77/zium-slider#readme"
+}

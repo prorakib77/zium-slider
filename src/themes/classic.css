@@ -1,0 +1,124 @@
+/* Zium Slider - Classic Theme */
+
+.zium-slider.classic {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.zium-slider.classic .zium-slider-track {
+  display: flex;
+  width: 100%;
+  will-change: transform;
+}
+
+.zium-slider.classic .zium-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* Classic Arrows */
+.zium-slider.classic .zium-slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.zium-slider.classic .zium-slider-arrow:hover:not(:disabled) {
+  background: #fff;
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.zium-slider.classic .zium-slider-arrow:active:not(:disabled) {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.zium-slider.classic .zium-slider-arrow:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.zium-slider.classic .zium-slider-arrow-prev {
+  left: 20px;
+}
+
+.zium-slider.classic .zium-slider-arrow-next {
+  right: 20px;
+}
+
+/* Classic Dots */
+.zium-slider.classic .zium-slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 0;
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+}
+
+.zium-slider.classic .zium-slider-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+}
+
+.zium-slider.classic .zium-slider-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.3);
+  border-color: rgba(255, 255, 255, 1);
+}
+
+.zium-slider.classic .zium-slider-dot.active {
+  background: #fff;
+  transform: scale(1.4);
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .zium-slider.classic .zium-slider-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+  
+  .zium-slider.classic .zium-slider-arrow-prev {
+    left: 10px;
+  }
+  
+  .zium-slider.classic .zium-slider-arrow-next {
+    right: 10px;
+  }
+}
+
