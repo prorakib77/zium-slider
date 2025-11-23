@@ -457,6 +457,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 **Abdullah MT Rakib**
 
+- Web: <a href="https://abdullahmtrakib.com">Abdullah MT Rakib</a>
 - GitHub: [@prorakib77](https://github.com/prorakib77)
 - Repository: [zium-slider](https://github.com/prorakib77/zium-slider)
 
