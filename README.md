@@ -2,6 +2,14 @@
 
 A lightweight, dependency-free vanilla JavaScript slider/carousel that works seamlessly via CDN or npm.
 
+[![npm version](https://img.shields.io/npm/v/zium-slider.svg)](https://www.npmjs.com/package/zium-slider)
+[![GitHub](https://img.shields.io/github/license/prorakib77/zium-slider)](https://github.com/prorakib77/zium-slider)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/zium-slider/badge)](https://www.jsdelivr.com/package/npm/zium-slider)
+
+**Repository**: [https://github.com/prorakib77/zium-slider](https://github.com/prorakib77/zium-slider)  
+**npm Package**: [https://www.npmjs.com/package/zium-slider](https://www.npmjs.com/package/zium-slider)  
+**CDN**: [jsDelivr](https://cdn.jsdelivr.net/npm/zium-slider@latest/dist/simple-slider.min.js)
+
 ## Features
 
 - 🚀 **Lightweight** - No dependencies, pure vanilla JavaScript
@@ -302,7 +310,159 @@ The slider comes with default styles, but you can easily customize them by overr
 
 MIT
 
+## Publishing to npm
+
+### Prerequisites
+
+1. **npm account**: Create an account at [npmjs.com](https://www.npmjs.com/signup)
+2. **Login to npm**: Run `npm login` in your terminal
+3. **Git repository**: Make sure your code is pushed to GitHub
+
+### Step-by-Step Publishing Process
+
+1. **Build the Package**
+   ```bash
+   npm run build
+   ```
+
+2. **Check Package Name Availability**
+   ```bash
+   npm view zium-slider
+   ```
+   If it returns 404, the name is available.
+
+3. **Publish to npm**
+   ```bash
+   npm publish
+   ```
+   The `prepublishOnly` script will automatically build before publishing.
+
+4. **Verify Publication**
+   - Visit: https://www.npmjs.com/package/zium-slider
+   - Or run: `npm view zium-slider`
+
+### Updating the Package
+
+1. Make your changes
+2. Update version: `npm version patch` (or `minor`/`major`)
+3. Build: `npm run build`
+4. Publish: `npm publish`
+5. Push to GitHub: `git push && git push --tags`
+
+## GitHub Setup
+
+### Initial Setup
+
+1. **Initialize Git Repository** (if not already done)
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit: Zium Slider"
+   ```
+
+2. **Add GitHub Remote**
+   ```bash
+   git remote add origin https://github.com/prorakib77/zium-slider.git
+   git branch -M main
+   ```
+
+3. **Push to GitHub**
+   ```bash
+   git push -u origin main
+   ```
+
+### Authentication
+
+If you get authentication errors:
+
+**Option 1: Personal Access Token (Recommended)**
+1. Go to: https://github.com/settings/tokens
+2. Generate new token (classic) with `repo` permissions
+3. Use the token as password when prompted
+
+**Option 2: SSH**
+```bash
+git remote set-url origin git@github.com:prorakib77/zium-slider.git
+git push -u origin main
+```
+
+### Creating GitHub Releases
+
+1. Go to your repository: https://github.com/prorakib77/zium-slider
+2. Click on **Releases** → **Create a new release**
+3. Tag: `v1.0.0`
+4. Title: `v1.0.0 - Initial Release`
+5. Description: List all features and improvements
+
+## Development
+
+### Local Development
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/prorakib77/zium-slider.git
+   cd zium-slider
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Build the package**
+   ```bash
+   npm run build
+   ```
+
+4. **Test locally**
+   - Open `demo.html` or `demo-all-sliders.html` in your browser
+   - Or use `npm pack` to create a test package
+
+### Project Structure
+
+```
+zium-slider/
+├── src/
+│   ├── SimpleSlider.js      # Main slider class
+│   ├── simple-slider.css    # All themes CSS
+│   └── themes/              # Individual theme files
+├── dist/                    # Built files (for npm/CDN)
+│   ├── simple-slider.js
+│   ├── simple-slider.min.js
+│   └── simple-slider.css
+├── demo.html                # Theme showcase demo
+├── demo-all-sliders.html    # All slider types demo
+├── package.json
+├── rollup.config.js         # Build configuration
+└── README.md
+```
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+### How to Contribute
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## Author
+
+**Abdullah MT Rakib**
+
+- GitHub: [@prorakib77](https://github.com/prorakib77)
+- Repository: [zium-slider](https://github.com/prorakib77/zium-slider)
+
+## Support
+
+- 📧 Issues: [GitHub Issues](https://github.com/prorakib77/zium-slider/issues)
+- 📖 Documentation: [README.md](README.md)
+- 💬 Discussions: [GitHub Discussions](https://github.com/prorakib77/zium-slider/discussions)
 
